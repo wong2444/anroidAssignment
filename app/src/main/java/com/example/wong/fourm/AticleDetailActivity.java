@@ -100,7 +100,28 @@ public class AticleDetailActivity extends AppCompatActivity {
 
                     tv_title.setText(article1.getTitle());
                     tv_author.setText(article1.getAuthor_name() + "        " + article1.getCreate_date());
-                    tv_body.setText(article1.getBody());
+                    if (sp.getString("userId", "").equals(article1.getAuthor_id())) {
+                        tv_body.setText(article1.getBody() + "\n\n" + "[edit]" + "\n");
+                        tv_body.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Bundle bundle = new Bundle();
+
+                                bundle.putString("articleId", article1.getId());
+                                bundle.putString("title", article1.getTitle());
+                                bundle.putString("body", article1.getBody());
+
+
+                                Intent intent = new Intent(AticleDetailActivity.this, EditActicleActivity.class);
+                                intent.putExtras(bundle);
+                                finish();
+                                startActivity(intent);
+                            }
+                        });
+                    } else {
+                        tv_body.setText(article1.getBody() + "\n\n");
+                    }
+
 
                     lv.setAdapter(new MyListAdapter());
 

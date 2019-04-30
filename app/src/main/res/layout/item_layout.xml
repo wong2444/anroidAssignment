@@ -28,7 +28,7 @@
         android:maxLines="2"
         android:singleLine="true"
         android:text="231231231231313133131313131"
-        android:textColor="#C7C8C3"
+        android:textColor="#FF001F"
         android:textSize="10sp"
 
         />

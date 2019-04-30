@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getApplicationContext(),"login load",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "login load", Toast.LENGTH_LONG).show();
                 String email = et_email.getText().toString().trim();
                 String password = et_password.getText().toString().trim();
                 OkGo.<String>post("http://192.168.1.2:3000/user/login")
@@ -57,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                                         SharedPreferences sp = getSharedPreferences("token.txt", 0);
                                         SharedPreferences.Editor edit = sp.edit();
                                         edit.putString("token", obj.getString("token"));
+                                        edit.putString("userId", obj.getString("userId"));
                                         edit.apply();
                                         Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_LONG).show();
                                         finish();
@@ -69,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                                 } catch (JSONException e) {
-                                    Toast.makeText(getApplicationContext(),"error",Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_LONG).show();
                                     e.printStackTrace();
                                 }
 
@@ -77,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             @Override
                             public void onError(Response<String> response) {
-                                Toast.makeText(getApplicationContext(),"error",Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_LONG).show();
                                 Log.d("hello", "fuck");
                                 super.onError(response);
                             }

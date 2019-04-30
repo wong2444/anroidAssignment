@@ -123,9 +123,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
         switch (item.getItemId()) {
             case R.id.menu_login:
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.menu_add_article:
+                intent = new Intent(MainActivity.this, AddArticleActivity.class);
                 startActivity(intent);
                 return true;
             default:

@@ -26,8 +26,13 @@
         <activity android:name=".AticleDetailActivity" />
         <activity
             android:name=".LoginActivity"
-            android:label="Login"></activity>
-        <activity android:name=".AddArticleActivity"></activity>
+            android:label="Login" />
+        <activity
+            android:name=".AddArticleActivity"
+            android:label="Create Article"></activity>
+        <activity
+            android:name=".EditActicleActivity"
+            android:label="Edit Article"></activity>
     </application>
 
 </manifest>
