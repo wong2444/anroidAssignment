@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:text="efewfewfewfewfwefewf"
+        android:text=""
         android:textColor="#272D31"
         android:textSize="30sp" />
 
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_title"
         android:layout_marginLeft="20dp"
-        android:text="161f6f1e6f16f1esw56fe1swf6f1ew6"
+        android:text=""
         android:textColor="#C7C8C3"
         android:textSize="18sp" />
 
@@ -38,14 +38,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:text="161f6f1e6f16f1esw56fe1swf6f1ew6"
+            android:text=""
             android:textSize="25sp" />
     </ScrollView>
-
-
-
-
-
 
 
 
@@ -83,7 +78,7 @@
             android:layout_height="wrap_content"
 
             android:layout_weight="1"
-            android:text="submit" />
+            android:text="@string/artcle_detail_page_btn" />
     </LinearLayout>
 
 

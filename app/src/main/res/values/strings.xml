@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Fourm</string>
+    <string name="login_menu">Login/Register</string>
+    <string name="add_article_menu">Add articles</string>
+    <string name="artcle_detail_page_btn">submit</string>
+    <string name="login_page_name">name(for signup)</string>
+    <string name="login_page_email">email</string>
+    <string name="login_page_password">password</string>
+    <string name="login_page_login_btn">Login</string>
+    <string name="login_page_register_btn">Register</string>
+    <string name="add_article_page_title">create article</string>
+    <string name="add_article_page_submit_btn">submit</string>
+    <string name="add_article_page_tv_title">title</string>
+    <string name="add_article_page_tv_body">body</string>
+    <string name="edit_article_page_delete_btn">delete</string>
+    <string name="edit_article_page_edit_btn">edit</string>
+    <string name="edit_article_page_title">edit article</string>
 </resources>

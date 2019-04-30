@@ -26,13 +26,13 @@
         <activity android:name=".AticleDetailActivity" />
         <activity
             android:name=".LoginActivity"
-            android:label="Login" />
+            android:label="@string/login_menu" />
         <activity
             android:name=".AddArticleActivity"
-            android:label="Create Article"></activity>
+            android:label="@string/add_article_menu"></activity>
         <activity
             android:name=".EditActicleActivity"
-            android:label="Edit Article"></activity>
+            android:label="@string/edit_article_page_title"></activity>
     </application>
 
 </manifest>

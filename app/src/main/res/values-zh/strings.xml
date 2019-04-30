@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">論壇</string>
+    <string name="login_menu">登錄/註冊</string>
+    <string name="add_article_menu">添加文章</string>
+    <string name="artcle_detail_page_btn">提交</string>
+    <string name="login_page_name">名字(注冊用)</string>
+    <string name="login_page_email">電郵</string>
+    <string name="login_page_password">密碼</string>
+    <string name="login_page_login_btn">登錄</string>
+    <string name="login_page_register_btn">注冊</string>
+    <string name="add_article_page_title">創建文章</string>
+    <string name="add_article_page_submit_btn">提交</string>
+    <string name="add_article_page_tv_title">標題</string>
+    <string name="add_article_page_tv_body">內容</string>
+    <string name="edit_article_page_delete_btn">刪除</string>
+    <string name="edit_article_page_edit_btn">編輯</string>
+    <string name="edit_article_page_title">編輯文章</string>
+</resources>

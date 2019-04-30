@@ -12,7 +12,7 @@
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="title:" />
+        android:text="@string/add_article_page_tv_title" />
 
     <EditText
         android:id="@+id/et_title"
@@ -23,7 +23,7 @@
         android:id="@+id/tv_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="body:" />
+        android:text="@string/add_article_page_tv_body" />
 
     <EditText
         android:id="@+id/et_body"
@@ -34,11 +34,11 @@
         android:id="@+id/btn_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="edit" />
+        android:text="@string/edit_article_page_edit_btn" />
 
     <Button
         android:id="@+id/btn_delete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="delete" />
+        android:text="@string/edit_article_page_delete_btn" />
 </LinearLayout>

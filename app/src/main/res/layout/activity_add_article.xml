@@ -11,7 +11,7 @@
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="title:" />
+        android:text="@string/add_article_page_tv_title" />
 
     <EditText
         android:id="@+id/et_title"
@@ -22,7 +22,7 @@
         android:id="@+id/tv_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="body:" />
+        android:text="@string/add_article_page_tv_body" />
 
     <EditText
         android:id="@+id/et_body"
@@ -33,5 +33,5 @@
         android:id="@+id/btn_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="submit" />
+        android:text="@string/add_article_page_submit_btn" />
 </LinearLayout>

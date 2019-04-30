@@ -12,7 +12,7 @@
         android:layout_marginLeft="20dp"
         android:ellipsize="end"
         android:singleLine="true"
-        android:text="testestestetetstetsetsetsetsets"
+        android:text=""
         android:textColor="#272D31"
         android:textSize="15sp" />
 
@@ -27,7 +27,7 @@
         android:ellipsize="end"
         android:maxLines="2"
         android:singleLine="true"
-        android:text="231231231231313133131313131"
+        android:text=""
         android:textColor="#FF001F"
         android:textSize="10sp"
 
