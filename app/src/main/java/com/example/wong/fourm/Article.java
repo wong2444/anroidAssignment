@@ -10,6 +10,34 @@ public class Article {
     private String url;
     private String type;
     private int count = 0;
+    private boolean is_update;
+
+    public boolean isIs_update() {
+        return is_update;
+    }
+
+    public void setIs_update(boolean is_update) {
+        this.is_update = is_update;
+    }
+
+    public boolean isIs_delete() {
+        return is_delete;
+    }
+
+    public void setIs_delete(boolean is_delete) {
+        this.is_delete = is_delete;
+    }
+
+    public String getUpdate_date() {
+        return update_date;
+    }
+
+    public void setUpdate_date(String update_date) {
+        this.update_date = update_date;
+    }
+
+    private boolean is_delete;
+    private String update_date;
 
     public Article() {
     }
