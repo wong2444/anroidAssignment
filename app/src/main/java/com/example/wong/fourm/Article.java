@@ -12,6 +12,17 @@ public class Article {
     private int count = 0;
     private boolean is_update;
 
+
+
+    private String area;
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
     public boolean isIs_update() {
         return is_update;
     }

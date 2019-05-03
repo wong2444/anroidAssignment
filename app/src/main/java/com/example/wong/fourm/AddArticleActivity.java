@@ -23,11 +23,16 @@ public class AddArticleActivity extends AppCompatActivity {
     private Button btn_submit;
     private SharedPreferences sp;
     private JSONObject obj;
+    private String address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_article);
+        GPSUtils gpsUtils = new GPSUtils(this);
+
+        address = gpsUtils.getAddressStr();
+        Toast.makeText(this, address, Toast.LENGTH_LONG).show();
         et_title = (EditText) findViewById(R.id.et_title);
         et_body = (EditText) findViewById(R.id.et_body);
         btn_submit = (Button) findViewById(R.id.btn_submit);
@@ -42,6 +47,7 @@ public class AddArticleActivity extends AppCompatActivity {
                         .headers("Authorization", "Bearer " + sp.getString("token", ""))
                         .params("body", body)
                         .params("title", title)
+                        .params("area", address)
                         .execute(new StringCallback() {
 
 

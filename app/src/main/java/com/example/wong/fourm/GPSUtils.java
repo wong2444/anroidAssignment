@@ -52,7 +52,8 @@ public class GPSUtils {
 
     private static final String TAG = "GPSUtils";
 
-    private static Location mLocation = null;
+    private static Location mLocation = new Location("dummyprovider");
+
 
     private static Activity mContext;
     int TAG_CODE_PERMISSION_LOCATION = 1;
@@ -60,13 +61,15 @@ public class GPSUtils {
     private LocationCallback locationCallback;
 
     public GPSUtils(Activity context) {
+        mLocation.setLatitude(114.1958548);
+        mLocation.setLongitude(22.3903352);
         this.mContext = context;
         mLocationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(mContext);
         // 判断GPS是否正常启动
 
         if (!mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            Toast.makeText(context, "请开启GPS导航...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "open GPS ...", Toast.LENGTH_SHORT).show();
             // 返回开启GPS导航设置界面
             Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
             context.startActivityForResult(intent, 0);
@@ -248,7 +251,8 @@ public class GPSUtils {
         List<Address> result = null;
         try {
             if (location != null) {
-                Geocoder gc = new Geocoder(mContext, Locale.getDefault());
+//                Geocoder gc = new Geocoder(mContext, Locale.getDefault());
+                Geocoder gc = new Geocoder(mContext);
                 result = gc.getFromLocation(location.getLatitude(),
                         location.getLongitude(), 1);
             }
@@ -259,87 +263,87 @@ public class GPSUtils {
     }
 
 
-    private Location updateToNewLocation(Location location) {
-        System.out.println("--------zhixing--2--------");
-        String latLongString;
-        double lat = 0;
-        double lng = 0;
+//    private Location updateToNewLocation(Location location) {
+//        System.out.println("--------zhixing--2--------");
+//        String latLongString;
+//        double lat = 0;
+//        double lng = 0;
+//
+//        if (location != null) {
+//            lat = location.getLatitude();
+//            lng = location.getLongitude();
+//            latLongString = "纬度:" + lat + "\n经度:" + lng;
+//            System.out.println("经度：" + lng + "纬度：" + lat);
+//        } else {
+//            latLongString = "无法获取地理信息，请稍后...";
+//        }
+//        if (lat != 0) {
+//            System.out.println("--------反馈信息----------" + String.valueOf(lat));
+//        }
+//
+////        Toast.makeText(getApplicationContext(), latLongString, Toast.LENGTH_SHORT).show();
+//        mLocation = location;
+//        return location;
+//
+//    }
+//
+//    // 设置监听器，自动更新的最小时间为间隔N秒(1秒为1*1000，这样写主要为了方便)或最小位移变化超过N米
+//    public final LocationListener mLocationListener01 = new LocationListener() {
+//        @Override
+//        public void onLocationChanged(Location location) {
+//            updateToNewLocation(location);
+//        }
+//
+//
+//        @Override
+//        public void onProviderDisabled(String provider) {
+//            updateToNewLocation(null);
+//        }
+//
+//        @Override
+//        public void onProviderEnabled(String provider) {
+//        }
+//
+//        @Override
+//        public void onStatusChanged(String provider, int status, Bundle extras) {
+//        }
+//    };
 
-        if (location != null) {
-            lat = location.getLatitude();
-            lng = location.getLongitude();
-            latLongString = "纬度:" + lat + "\n经度:" + lng;
-            System.out.println("经度：" + lng + "纬度：" + lat);
-        } else {
-            latLongString = "无法获取地理信息，请稍后...";
-        }
-        if (lat != 0) {
-            System.out.println("--------反馈信息----------" + String.valueOf(lat));
-        }
 
-//        Toast.makeText(getApplicationContext(), latLongString, Toast.LENGTH_SHORT).show();
-        mLocation = location;
-        return location;
-
-    }
-
-    // 设置监听器，自动更新的最小时间为间隔N秒(1秒为1*1000，这样写主要为了方便)或最小位移变化超过N米
-    public final LocationListener mLocationListener01 = new LocationListener() {
-        @Override
-        public void onLocationChanged(Location location) {
-            updateToNewLocation(location);
-        }
-
-
-        @Override
-        public void onProviderDisabled(String provider) {
-            updateToNewLocation(null);
-        }
-
-        @Override
-        public void onProviderEnabled(String provider) {
-        }
-
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {
-        }
-    };
-
-
-    // 状态监听
-    GpsStatus.Listener listener = new GpsStatus.Listener() {
-        public void onGpsStatusChanged(int event) {
-            switch (event) {
-                // 第一次定位
-                case GpsStatus.GPS_EVENT_FIRST_FIX:
-                    Log.i(TAG, "第一次定位");
-                    break;
-                // 卫星状态改变
-                case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
-                    Log.i(TAG, "卫星状态改变");
-                    GpsStatus gpsStatus = mLocationManager.getGpsStatus(null);
-                    // 获取卫星颗数的默认最大值
-                    int maxSatellites = gpsStatus.getMaxSatellites();
-                    // 创建一个迭代器保存所有卫星
-                    Iterator<GpsSatellite> iters = gpsStatus.getSatellites()
-                            .iterator();
-                    int count = 0;
-                    while (iters.hasNext() && count <= maxSatellites) {
-                        GpsSatellite s = iters.next();
-                        count++;
-                    }
-                    System.out.println("搜索到：" + count + "颗卫星");
-                    break;
-                // 定位启动
-                case GpsStatus.GPS_EVENT_STARTED:
-                    Log.i(TAG, "定位启动");
-                    break;
-                // 定位结束
-                case GpsStatus.GPS_EVENT_STOPPED:
-                    Log.i(TAG, "定位结束");
-                    break;
-            }
-        }
-    };
+//    // 状态监听
+//    GpsStatus.Listener listener = new GpsStatus.Listener() {
+//        public void onGpsStatusChanged(int event) {
+//            switch (event) {
+//                // 第一次定位
+//                case GpsStatus.GPS_EVENT_FIRST_FIX:
+//                    Log.i(TAG, "第一次定位");
+//                    break;
+//                // 卫星状态改变
+//                case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
+//                    Log.i(TAG, "卫星状态改变");
+//                    GpsStatus gpsStatus = mLocationManager.getGpsStatus(null);
+//                    // 获取卫星颗数的默认最大值
+//                    int maxSatellites = gpsStatus.getMaxSatellites();
+//                    // 创建一个迭代器保存所有卫星
+//                    Iterator<GpsSatellite> iters = gpsStatus.getSatellites()
+//                            .iterator();
+//                    int count = 0;
+//                    while (iters.hasNext() && count <= maxSatellites) {
+//                        GpsSatellite s = iters.next();
+//                        count++;
+//                    }
+//                    System.out.println("搜索到：" + count + "颗卫星");
+//                    break;
+//                // 定位启动
+//                case GpsStatus.GPS_EVENT_STARTED:
+//                    Log.i(TAG, "定位启动");
+//                    break;
+//                // 定位结束
+//                case GpsStatus.GPS_EVENT_STOPPED:
+//                    Log.i(TAG, "定位结束");
+//                    break;
+//            }
+//        }
+//    };
 
 }

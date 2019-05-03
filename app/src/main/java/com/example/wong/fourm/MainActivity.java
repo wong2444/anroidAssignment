@@ -42,16 +42,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         OkGo.getInstance().init(getApplication());
         setContentView(R.layout.activity_main);
         lv = (ListView) findViewById(R.id.lv_item);
 
-//        GPSUtils gpsUtils = new GPSUtils(this);
-//        String address = gpsUtils.getAddressStr();
-//        Toast.makeText(this, address, Toast.LENGTH_LONG).show();
+        GPSUtils gpsUtils = new GPSUtils(this);
+        String address = gpsUtils.getAddressStr();
+        Toast.makeText(this, address, Toast.LENGTH_LONG).show();
+        setTitle(address + " " + getString(R.string.app_name));
 
-
-        OkGo.<String>get("http://192.168.1.2:3000/articles").execute(new StringCallback() {
+        OkGo.<String>get("http://192.168.1.2:3000/articles/area/" + address).execute(new StringCallback() {
 
 
             @Override
