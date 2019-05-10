@@ -15,4 +15,5 @@
     <string name="edit_article_page_delete_btn">delete</string>
     <string name="edit_article_page_edit_btn">edit</string>
     <string name="edit_article_page_title">edit article</string>
+    <string name="logout_menu">Logout</string>
 </resources>

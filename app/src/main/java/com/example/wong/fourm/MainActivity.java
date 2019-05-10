@@ -3,8 +3,11 @@ package com.example.wong.fourm;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,9 +39,11 @@ public class MainActivity extends AppCompatActivity {
     private JSONObject obj;
     private ArrayList<Article> articleList;
     private int count = 0;
-
+    private SwipeRefreshLayout mSwipeRefreshLayout;
     protected Location mLastLocation;
-
+    private String address;
+    private GPSUtils gpsUtils;
+    private SharedPreferences sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,12 +51,39 @@ public class MainActivity extends AppCompatActivity {
         OkGo.getInstance().init(getApplication());
         setContentView(R.layout.activity_main);
         lv = (ListView) findViewById(R.id.lv_item);
-
-        GPSUtils gpsUtils = new GPSUtils(this);
-        String address = gpsUtils.getAddressStr();
+        sp = getSharedPreferences("token.txt", 0);
+        gpsUtils = new GPSUtils(this);
+        address = gpsUtils.getAddressStr();
         Toast.makeText(this, address, Toast.LENGTH_LONG).show();
         setTitle(address + " " + getString(R.string.app_name));
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh_layout);
 
+        getData();
+        invalidateOptionsMenu();
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mSwipeRefreshLayout.setRefreshing(true);
+                Toast.makeText(getApplicationContext(), "refresh", Toast.LENGTH_LONG).show();
+                articleList.clear();
+                articleList = null;
+                address = gpsUtils.getAddressStr();
+                setTitle(address + " " + getString(R.string.app_name));
+                (new Handler()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        getData();
+                        mSwipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 1000);
+
+
+            }
+        });
+
+    }
+
+    public void getData() {
         OkGo.<String>get("http://192.168.1.2:3000/articles/area/" + address).execute(new StringCallback() {
 
 
@@ -113,7 +145,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
     @Override
@@ -134,11 +165,40 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(MainActivity.this, AddArticleActivity.class);
                 startActivity(intent);
                 return true;
+            case R.id.menu_logout:
+
+                SharedPreferences.Editor edit = sp.edit();
+                edit.putString("token", "");
+                edit.putString("userId", "");
+                edit.apply();
+
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
 
     }
+
+//    @Override
+//    public boolean onPrepareOptionsMenu(Menu menu) {
+//        // 动态设置ToolBar状态
+//
+//        if(sp.getString("token", "")!=""){
+//            menu.findItem(R.id.menu_logout).setVisible(true);
+//            menu.findItem(R.id.menu_login).setVisible(false);
+//            menu.findItem(R.id.menu_add_article).setVisible(true);
+//
+//        }else{
+//            menu.findItem(R.id.menu_logout).setVisible(false);
+//            menu.findItem(R.id.menu_login).setVisible(true);
+//            menu.findItem(R.id.menu_add_article).setVisible(false);
+//        }
+//
+//        return super.onPrepareOptionsMenu(menu);
+//    }
+
+
+
 
     private class MyListAdapter extends BaseAdapter {
         @Override
@@ -169,8 +229,12 @@ public class MainActivity extends AppCompatActivity {
             TextView tv_body = (TextView) view.findViewById(R.id.tv_body);
             tv_title.setText(articleList.get(position).getTitle());
             tv_body.setText(articleList.get(position).getBody());
+            notifyDataSetChanged();
             return view;
         }
+
+
+
     }
 
 

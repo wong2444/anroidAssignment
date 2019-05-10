@@ -16,4 +16,5 @@
     <string name="edit_article_page_delete_btn">刪除</string>
     <string name="edit_article_page_edit_btn">編輯</string>
     <string name="edit_article_page_title">編輯文章</string>
+    <string name="logout_menu">登出</string>
 </resources>
