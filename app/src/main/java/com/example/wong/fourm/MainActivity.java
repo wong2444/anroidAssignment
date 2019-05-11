@@ -165,14 +165,14 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(MainActivity.this, AddArticleActivity.class);
                 startActivity(intent);
                 return true;
-            case R.id.menu_logout:
-
-                SharedPreferences.Editor edit = sp.edit();
-                edit.putString("token", "");
-                edit.putString("userId", "");
-                edit.apply();
-
-                return true;
+//            case R.id.menu_logout:
+//
+//                SharedPreferences.Editor edit = sp.edit();
+//                edit.putString("token", "");
+//                edit.putString("userId", "");
+//                edit.apply();
+//
+//                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private class MyListAdapter extends BaseAdapter {
+    public class MyListAdapter extends BaseAdapter {
         @Override
         public int getCount() {
             return count;
